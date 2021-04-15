@@ -1,0 +1,16 @@
+.table-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+    background-color: var(--ion-color-step-100);
+    border-radius: 12px;
+    padding: 24px;
+
+    & .row {
+        border-bottom: 1px solid #fff;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}

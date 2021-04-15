@@ -1,0 +1,13 @@
+<div class="row">
+  <span>{{ entry.entry.date | date: 'yyyy/MM/dd' }}</span>
+  <span [ngClass]="{'positive': entry.buy_percent >= 0, 'negative': entry.buy_percent < 0}">
+    <ion-icon *ngIf="entry.buy_percent >= 0" slot="start" class="positive" src="assets/svg/arrow-upward-outline.svg"></ion-icon>
+    <ion-icon *ngIf="entry.buy_percent < 0" slot="start" class="negative" src="assets/svg/arrow-downward-outline.svg"></ion-icon>
+    {{ entry.buy_percent | number: '1.2' }}%
+  </span>
+  <span [ngClass]="{'positive': entry.sell_percent >= 0, 'negative': entry.sell_percent < 0}">
+    <ion-icon *ngIf="entry.sell_percent >= 0" slot="start" src="assets/svg/arrow-upward-outline.svg"></ion-icon>
+    <ion-icon *ngIf="entry.sell_percent < 0" slot="start" src="assets/svg/arrow-downward-outline.svg"></ion-icon>
+    {{ entry.sell_percent | number: '1.2' }}%
+  </span>
+</div>

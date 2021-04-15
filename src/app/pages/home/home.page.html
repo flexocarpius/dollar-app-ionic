@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Summary</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-template *ngIf="!data">
+    <app-loading [height]="64"></app-loading>
+  </ng-template>
+  <div class="top-container">
+    <app-comparison-card *ngIf="buyData" [comparisonData]="buyData"></app-comparison-card>
+    <app-comparison-card *ngIf="sellData" [comparisonData]="sellData"></app-comparison-card>
+  </div>
+  <div class="weekly-container">
+    <app-weekly-table [weeklyData]="weeklyData"></app-weekly-table>
+  </div>
+</ion-content>

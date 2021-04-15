@@ -1,0 +1,6 @@
+<div class="table-container">
+  <h4>Weekly comparison</h4>
+  <ng-container *ngFor="let row of weeklyData">
+    <app-entry-row [entry]="row"></app-entry-row>
+  </ng-container>
+</div>

@@ -1,0 +1,14 @@
+.row {
+    border-bottom: 1px solid #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    & .negative {
+        color: #fb6340;
+    }
+
+    & .positive {
+        color: #2dce89;
+    }
+}

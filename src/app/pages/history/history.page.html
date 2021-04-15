@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="entry" *ngFor="let entry of data">
+    <h4>Buy: {{ entry.buy_price }}, Sell: {{ entry.sell_price }}</h4>
+    <h5>{{ entry.date | date: 'yyyy/MM/dd' }}</h5>
+  </div>
+</ion-content>
