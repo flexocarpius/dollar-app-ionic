@@ -1,6 +1,6 @@
 {
   "appId": "io.nielsmrk.dollar",
-  "appName": "Dollar",
+  "appName": "Dollar Insights",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
