@@ -15,22 +15,57 @@ export class StatsPage implements OnInit {
   public lineChartLabels: any;
   public lineChartOptions: (any & { annotation: any }) = {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
     scales: {
       xAxes: [
-        { display: false }
+        { 
+          type: 'time',
+          display: true,
+          position: 'bottom',
+          time: {
+            displayFormats: { 'day': 'MM/YYYY' },
+            tooltipFormat: 'DD/MM/YYYY',
+            unit: 'month'
+          }
+        }
       ]
+    },
+    plugins: {
+      zoom: {
+        pan: {
+          enabled: true,
+          mode: 'x',
+          overScaleMode: 'x',
+          threshold: 10,
+        },
+        zoom: {
+          enabled: true,
+          drag: true,
+          mode: 'x',
+          overScaleMode: 'x',
+          threshold: 2,
+          sensitivity: 3,
+        }
+      }
+    },
+    transitions: {
+      zoom: {
+        animation: {
+          duration: 1000,
+          easing: 'easeOutCubic'
+        }
+      }
     }
   };
   public buyLineChartColors: any = [
     {
-      borderColor: 'rgb(75, 192, 192)',
+      borderColor: 'rgb(52, 235, 149)',
       backgroundColor: 'rgba(255,0,0,0.3)',
     },
   ];
   public sellLineChartColors: any = [
     {
-      borderColor: 'rgb(75, 192, 192)',
+      borderColor: 'rgb(235, 119, 52)',
       backgroundColor: 'rgba(255,0,0,0.3)',
     },
   ];
@@ -52,10 +87,8 @@ export class StatsPage implements OnInit {
             data: reversed.map(d => d.buy_price),
             label: 'Buy price',
             pointRadius: 0,
-            borderColor: 'rgb(75, 192, 192)',
             fill: false,
-            borderWidth: 5,
-            tension: 0.1,
+            borderWidth: 3,
           }
         ];
         this.sellData = [
@@ -63,12 +96,11 @@ export class StatsPage implements OnInit {
             data: reversed.map(d => d.sell_price),
             label: 'Sell price',
             pointRadius: 0,
-            borderColor: 'rgb(75, 192, 192)',
             fill: false,
-            borderWidth: 5,
+            borderWidth: 3,
           }
         ];
-        this.lineChartLabels = reversed.map(d => d.date)
+        this.lineChartLabels = reversed.map(d => new Date(d.date))
       }
     });
   }
