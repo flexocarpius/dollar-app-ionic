@@ -10,10 +10,10 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getWeeklyData() {
-    return this.http.get(`${this.BASE_URL}/weekly`);
+    return this.http.get(`${this.BASE_URL}/weekly/`);
   }
 
   getAllData() {
-    return this.http.get(`${this.BASE_URL}/api/entries`);
+    return this.http.get(`${this.BASE_URL}/api/entries/`);
   }
 }
