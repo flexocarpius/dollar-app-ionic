@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { ToastController } from "@ionic/angular";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { iif, of } from 'rxjs';
@@ -12,7 +13,7 @@ import { AppState } from "../app.state";
 @Injectable()
 export class EntriesEffects {
 
-    constructor(private actions$: Actions, private store: Store<AppState>, private api: ApiService) {}
+    constructor(private actions$: Actions, private store: Store<AppState>, private api: ApiService, private toastController: ToastController) {}
 
     loadAllEntries$ = createEffect(() => this.actions$.pipe(
         ofType(loadAllEntries),
@@ -21,7 +22,10 @@ export class EntriesEffects {
                 () => entries && entries.length > 0,
                 of(loadAllEntriesSuccess({ entries })),
                 this.api.getAllData().pipe(
-                    map((data: EntryModel[]) => loadAllEntriesSuccess({ entries: data })),
+                    map((data: EntryModel[]) => {
+                        this.presentToastMessage('Data loaded.');
+                        return loadAllEntriesSuccess({ entries: data });
+                    }),
                     catchError(() => of(loadAllEntriesFail()))
                 )
             ))
@@ -35,10 +39,24 @@ export class EntriesEffects {
                 () => summary && Object.keys(summary).length > 0,
                 of(loadTodaySummarySuccess({ summary })),
                 this.api.getWeeklyData().pipe(
-                    map((data: TodaySummaryModel) => loadTodaySummarySuccess({ summary: data })),
+                    map((data: TodaySummaryModel) => {
+                        this.presentToastMessage('Data loaded.');
+                        return loadTodaySummarySuccess({ summary: data });
+                    }),
                     catchError(() => of(loadTodaySummaryFail()))
                 )
             ))
         ))
     ));
+
+    presentToastMessage(msg: string) {
+        this.toastController.create({
+            header: msg,
+            position: 'bottom',
+            buttons: [{
+                text: 'Dismiss',
+                role: 'cancel',
+            }]
+        }).then(toast => toast.present());
+    }
 }
