@@ -7,8 +7,9 @@
 <ion-content>
   <ng-container *ngIf="entries$ | async as entries; else loading">
     <div class="entry" *ngFor="let entry of entries">
-      <h4>Buy: {{ entry.buy_price }}, Sell: {{ entry.sell_price }}</h4>
-      <h5>{{ entry.date | date: 'yyyy/MM/dd' }}</h5>
+      <span>Buy: {{ entry.buy_price }}</span>
+      <span>Sell: {{ entry.sell_price }}</span>
+      <span>{{ entry.date | date: 'yyyy/MM/dd' }}</span>
     </div>
   </ng-container>
   <ng-container #loading>
