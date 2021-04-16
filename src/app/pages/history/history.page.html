@@ -5,16 +5,27 @@
 </ion-header>
 
 <ion-content>
-  <ng-container *ngIf="entries$ | async as entries; else loading">
-    <div class="entry" *ngFor="let entry of entries">
+  <ng-container *ngIf="loading === false">
+    <div class="filter">
+      <h4>Filter by date</h4>
+      <input type="text"
+        ngxDaterangepickerMd
+        [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
+        startKey="start"
+        endKey="end"
+        [(ngModel)]="selected"
+        (datesUpdated)="datesUpdated($event)"
+        name="daterange" />
+    </div>
+    <div class="entry" *ngFor="let entry of filteredEntries">
       <span>Buy: {{ entry.buy_price }}</span>
       <span>Sell: {{ entry.sell_price }}</span>
       <span>{{ entry.date | date: 'yyyy/MM/dd' }}</span>
     </div>
   </ng-container>
-  <ng-template #loading>
+  <ng-container *ngIf="loading === true">
     <div class="placeholder-container">
       <app-loading></app-loading>
     </div>
-  </ng-template>
+  </ng-container>
 </ion-content>

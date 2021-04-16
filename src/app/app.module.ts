@@ -14,11 +14,15 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { entriesReducer } from './store/reducers/entries.reducers';
 import 'chartjs-plugin-zoom';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, StoreModule.forRoot({ entries: entriesReducer }), EffectsModule.forRoot([EntriesEffects]), StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, StoreModule.forRoot({ entries: entriesReducer }),
+    EffectsModule.forRoot([EntriesEffects]), StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }), BrowserAnimationsModule,
+    NgxDaterangepickerMd.forRoot()],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

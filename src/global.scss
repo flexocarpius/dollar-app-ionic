@@ -24,3 +24,29 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.md-drppicker {
+    color: #fff !important;
+    background-color: transparent !important;
+
+    & .calendar-table {
+        background-color: var(--ion-color-step-100) !important;
+    }
+
+    & td.off {
+        background-color: transparent !important;
+    }
+
+    & td.in-range {
+        background-color: var(--ion-color-primary) !important;
+        color: #fff !important;
+    }
+
+    & td.active {
+        background-color: var(--ion-color-primary) !important;
+    }
+
+    & td.available.next, & th.available.next, & td.available.prev, & th.available.prev {
+        color: #fff !important;
+    }
+}

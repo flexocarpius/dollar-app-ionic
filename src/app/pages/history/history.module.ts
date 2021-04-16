@@ -8,13 +8,15 @@ import { HistoryPageRoutingModule } from './history-routing.module';
 
 import { HistoryPage } from './history.page';
 import { LoadingComponent } from '../../components/loading/loading.component';
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HistoryPageRoutingModule
+    HistoryPageRoutingModule,
+    NgxDaterangepickerMd.forRoot()
   ],
   declarations: [HistoryPage, LoadingComponent]
 })
