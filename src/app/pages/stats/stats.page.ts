@@ -92,7 +92,6 @@ export class StatsPage implements OnInit {
             pointRadius: 0,
             fill: false,
             borderWidth: 3,
-            borderColor: 'rgb(52, 235, 149)',
             backgroundColor: 'rgba(255,0,0,0.3)',
           }
         ];
@@ -103,7 +102,6 @@ export class StatsPage implements OnInit {
             pointRadius: 0,
             fill: false,
             borderWidth: 3,
-            borderColor: 'rgb(235, 119, 52)',
             backgroundColor: 'rgba(255,0,0,0.3)',
           }
         ];
@@ -115,7 +113,7 @@ export class StatsPage implements OnInit {
   }
 
   initBuyChart(labels, datasets) {
-    let ctx = document.getElementById("buy-chart") as HTMLCanvasElement;
+    let ctx: any = document.getElementById("buy-chart");
     this.buyChart = new Chart(ctx, {
       type: 'line',
       data: {
@@ -124,6 +122,12 @@ export class StatsPage implements OnInit {
       },
       options: this.lineChartOptions
     });
+    const context = this.buyChart.ctx;
+    const gradientStroke = context.createLinearGradient(2000, 0, 100, 0);
+    gradientStroke.addColorStop(0, "#34eb95");
+    gradientStroke.addColorStop(1, "#02dbeb");
+    this.buyChart.data.datasets[0].borderColor = gradientStroke;
+    this.buyChart.chart.update();
   }
 
   initSellChart(labels, datasets) {
@@ -136,6 +140,12 @@ export class StatsPage implements OnInit {
       },
       options: this.lineChartOptions
     });
+    const context = this.sellChart.ctx;
+    const gradientStroke = context.createLinearGradient(2000, 0, 100, 0);
+    gradientStroke.addColorStop(0, "#eb7734");
+    gradientStroke.addColorStop(1, "#e3dd30");
+    this.sellChart.data.datasets[0].borderColor = gradientStroke;
+    this.sellChart.chart.update();
   }
 
   resetBuyChartZoom() {
