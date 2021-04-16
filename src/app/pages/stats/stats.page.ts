@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { ChartDataSets } from 'chart.js';
-import { EntryModel } from 'src/app/models/entry.model';
-import { ApiService } from 'src/app/services/api.service';
+import { loadAllEntries } from '../../store/actions/entries.actions';
+import { AppState } from '../../store/app.state';
 
 @Component({
   selector: 'app-stats',
@@ -30,26 +31,30 @@ export class StatsPage implements OnInit {
   public lineChartType = 'line';
   public lineChartPlugins = [];
 
-  constructor(private api: ApiService) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.api.getAllData().subscribe((data: EntryModel[]) => {
-      this.buyData = [
-        {
-          data: data.reverse().map(d => d.buy_price),
-          label: 'Buy price',
-          pointRadius: 0,
-        }
-      ];
-      this.sellData = [
-        {
-          data: data.reverse().map(d => d.sell_price),
-          label: 'Sell price',
-          pointRadius: 0,
-          borderColor: 'green'
-        }
-      ];
-      this.lineChartLabels = data.reverse().map(d => d.date)
+    this.store.dispatch(loadAllEntries());
+    this.store.select(state => state.entries).subscribe(({ loading, entries }) => {
+      if (!loading && entries) {
+        const reversed = entries.slice().reverse();
+        this.buyData = [
+          {
+            data: reversed.map(d => d.buy_price),
+            label: 'Buy price',
+            pointRadius: 0,
+          }
+        ];
+        this.sellData = [
+          {
+            data: reversed.map(d => d.sell_price),
+            label: 'Sell price',
+            pointRadius: 0,
+            borderColor: 'green'
+          }
+        ];
+        this.lineChartLabels = reversed.map(d => d.date)
+      }
     });
   }
 

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { EntryModel } from 'src/app/models/entry.model';
-import { ApiService } from 'src/app/services/api.service';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { EntryModel } from '../../models/entry.model';
+import { loadAllEntries } from '../../store/actions/entries.actions';
+import { AppState } from '../../store/app.state';
 
 @Component({
   selector: 'app-history',
@@ -8,14 +12,15 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./history.page.scss'],
 })
 export class HistoryPage implements OnInit {
-  data: EntryModel[];
+  entries$: Observable<EntryModel[]>;
 
-  constructor(private api: ApiService) { }
+  constructor(private store: Store<AppState>) {
+    this.store.dispatch(loadAllEntries());
+    this.entries$ = this.store.select(state => state.entries.entries);
+  }
 
   ngOnInit() {
-    this.api.getAllData().subscribe((data: EntryModel[]) => {
-      this.data = data;
-    });
+    
   }
 
 }

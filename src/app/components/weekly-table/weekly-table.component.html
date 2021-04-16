@@ -1,6 +1,11 @@
 <div class="table-container">
   <h4>Weekly comparison</h4>
-  <ng-container *ngFor="let row of weeklyData">
-    <app-entry-row [entry]="row"></app-entry-row>
+  <div *ngIf="loading" class="placeholder-container">
+    <app-loading></app-loading>
+  </div>
+  <ng-container *ngIf="!loading">
+    <ng-container *ngFor="let row of weeklyData">
+      <app-entry-row [entry]="row"></app-entry-row>
+    </ng-container>
   </ng-container>
 </div>

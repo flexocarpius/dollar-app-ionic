@@ -8,6 +8,7 @@ import { TodaySummaryModel } from 'src/app/models/weekly-comparison.model';
 })
 export class WeeklyTableComponent implements OnInit {
   @Input() weeklyData: TodaySummaryModel;
+  @Input() loading: boolean;
 
   constructor() { }
 

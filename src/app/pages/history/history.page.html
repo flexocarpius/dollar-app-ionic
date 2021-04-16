@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <div class="entry" *ngFor="let entry of data">
+  <div class="entry" *ngFor="let entry of entries$ | async">
     <h4>Buy: {{ entry.buy_price }}, Sell: {{ entry.sell_price }}</h4>
     <h5>{{ entry.date | date: 'yyyy/MM/dd' }}</h5>
   </div>

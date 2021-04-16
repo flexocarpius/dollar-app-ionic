@@ -3,7 +3,11 @@
     padding: 24px;
     color: #fff;
     background-color: var(--ion-color-step-100);
-    margin: 16px;
+    margin: 0 16px 16px 16px;
+    height: 198px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     & .detail-icon {
         font-size: 64px;
@@ -11,9 +15,12 @@
 
     & .details-container {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
+        margin-bottom: 2em;
+
+        & h4, & h3, & h2, & h1 {
+            margin: 0;
+        }
     }
 
     & .title {
@@ -23,7 +30,7 @@
     }
 
     & .price {
-        font-size: x-large;
+        font-size: 48px;
         margin-bottom: 2em;
     }
 

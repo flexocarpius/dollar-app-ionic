@@ -20,7 +20,7 @@ export class EntriesEffects {
             mergeMap(entries => iif(
                 () => entries && entries.length > 0,
                 of(loadAllEntriesSuccess({ entries })),
-                this.api.getWeeklyData().pipe(
+                this.api.getAllData().pipe(
                     map((data: EntryModel[]) => loadAllEntriesSuccess({ entries: data })),
                     catchError(() => of(loadAllEntriesFail()))
                 )

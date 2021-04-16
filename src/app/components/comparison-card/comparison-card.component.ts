@@ -8,6 +8,7 @@ import { ComparisonDataModel } from 'src/app/models/comparison-data.model';
 })
 export class ComparisonCardComponent implements OnInit {
   @Input() comparisonData: ComparisonDataModel;
+  @Input() loading: boolean;
 
   constructor() { }
 
