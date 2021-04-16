@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ChartDataSets } from 'chart.js';
 import { loadAllEntries } from '../../store/actions/entries.actions';
 import { AppState } from '../../store/app.state';
 
@@ -26,7 +25,12 @@ export class StatsPage implements OnInit {
             displayFormats: { 'day': 'MM/YYYY' },
             tooltipFormat: 'DD/MM/YYYY',
             unit: 'month'
-          }
+          },
+          ticks: {
+            autoSkip: false,
+            maxRotation: 90,
+            minRotation: 90
+        }
         }
       ]
     },
@@ -37,14 +41,27 @@ export class StatsPage implements OnInit {
           mode: 'x',
           overScaleMode: 'x',
           threshold: 10,
+          rangeMin: {
+            x: null,
+          },
+          rangeMax: {
+            x: null,
+          },
         },
         zoom: {
           enabled: true,
           drag: true,
           mode: 'x',
           overScaleMode: 'x',
+          speed: 0.1,
           threshold: 2,
           sensitivity: 3,
+          rangeMin: {
+            x: null,
+          },
+          rangeMax: {
+            x: null,
+          },
         }
       }
     },

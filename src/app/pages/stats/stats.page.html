@@ -9,7 +9,14 @@
     <app-loading></app-loading>
   </div>
   <ng-container *ngIf="!loading">
-    <h1 class="title">Buy prices</h1>
+    <div class="title-container">
+      <h1 class="title">Buy prices</h1>
+      <div class="buttons">
+        <ion-button>
+          Reset zoom
+        </ion-button>
+      </div>
+    </div>
     <div class="chart-container" *ngIf="buyData">
       <div class="chart">
         <canvas baseChart
@@ -23,7 +30,14 @@
         </canvas>
       </div>
     </div>
-    <h1 class="title">Sell prices</h1>
+    <div class="title-container">
+      <h1 class="title">Sell prices</h1>
+      <div class="buttons">
+        <ion-button>
+          Reset zoom
+        </ion-button>
+      </div>
+    </div>
     <div class="chart-container" *ngIf="sellData">
       <div class="chart">
         <canvas baseChart

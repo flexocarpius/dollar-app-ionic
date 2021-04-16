@@ -1,10 +1,15 @@
-<ion-header>
+<ion-header translucent="true">
   <ion-toolbar>
     <ion-title>Summary</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Summary</ion-title>
+    </ion-toolbar>
+  </ion-header>
   <div class="top-container">
     <app-comparison-card [loading]="loading" [comparisonData]="buyData"></app-comparison-card>
     <app-comparison-card [loading]="loading" [comparisonData]="sellData"></app-comparison-card>
