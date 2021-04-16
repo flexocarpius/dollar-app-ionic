@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ComparisonDataModel } from 'src/app/models/comparison-data.model';
-import { WeeklyComparisonModel } from 'src/app/models/weekly-comparison.model';
-import { ApiService } from 'src/app/services/api.service';
+import { Store } from '@ngrx/store';
+import { ComparisonDataModel } from '../../models/comparison-data.model';
+import { DailyDataModel } from '../../models/daily-data.model';
+import { loadTodaySummary } from '../../store/actions/entries.actions';
+import { AppState } from '../../store/app.state';
 
 @Component({
   selector: 'app-home',
@@ -9,19 +11,23 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  data: any;
   buyData: ComparisonDataModel;
   sellData: ComparisonDataModel;
-  weeklyData: WeeklyComparisonModel;
+  weeklyData: DailyDataModel[];
+  loading: boolean;
 
-  constructor(private api: ApiService) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.api.getWeeklyData().subscribe((data: any) => {
-      this.data = data;
-      this.buyData = { label: 'Buy price', price: data.entry.buy_price, percent: data.buy_percent };
-      this.sellData = { label: 'Sell price', price: data.yesterday_entry.sell_price, percent: data.sell_percent };
-      this.weeklyData = data.week_entries;
+    this.store.dispatch(loadTodaySummary());
+    this.store.select(state => state.entries).subscribe((state) => {
+      const { loading, summary } = state;
+      this.loading = loading;
+      if (!loading && summary) {
+        this.buyData = { label: 'Buy price', price: summary.entry.buy_price, percent: summary.buy_percent };
+        this.sellData = { label: 'Sell price', price: summary.yesterday_entry.sell_price, percent: summary.sell_percent };
+        this.weeklyData = summary.week_entries;
+      }
     });
   }
 
