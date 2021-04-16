@@ -5,26 +5,37 @@
 </ion-header>
 
 <ion-content>
-  <div class="chart-container" *ngIf="buyData">
-    <canvas baseChart
-      [datasets]="buyData"
-      [labels]="lineChartLabels"
-      [options]="lineChartOptions"
-      [colors]="lineChartColors"
-      [legend]="lineChartLegend"
-      [chartType]="lineChartType"
-      [plugins]="lineChartPlugins">
-    </canvas>
+  <div *ngIf="loading" class="placeholder-container">
+    <app-loading></app-loading>
   </div>
-  <div class="chart-container" *ngIf="sellData">
-    <canvas baseChart
-      [datasets]="sellData"
-      [labels]="lineChartLabels"
-      [options]="lineChartOptions"
-      [colors]="lineChartColors"
-      [legend]="lineChartLegend"
-      [chartType]="lineChartType"
-      [plugins]="lineChartPlugins">
-    </canvas>
-  </div>
+  <ng-container *ngIf="!loading">
+    <h1 class="title">Buy prices</h1>
+    <div class="chart-container" *ngIf="buyData">
+      <div class="chart">
+        <canvas baseChart
+          [datasets]="buyData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="buyLineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"
+          [plugins]="lineChartPlugins">
+        </canvas>
+      </div>
+    </div>
+    <h1 class="title">Sell prices</h1>
+    <div class="chart-container" *ngIf="sellData">
+      <div class="chart">
+        <canvas baseChart
+          [datasets]="sellData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="buyLineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"
+          [plugins]="lineChartPlugins">
+        </canvas>
+      </div>
+    </div>
+  </ng-container>
 </ion-content>

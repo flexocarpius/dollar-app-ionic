@@ -8,6 +8,7 @@ import { StatsPageRoutingModule } from './stats-routing.module';
 
 import { StatsPage } from './stats.page';
 import { ChartsModule } from 'ng2-charts';
+import { LoadingComponent } from '../../components/loading/loading.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { ChartsModule } from 'ng2-charts';
     StatsPageRoutingModule,
     ChartsModule
   ],
-  declarations: [StatsPage]
+  declarations: [StatsPage, LoadingComponent]
 })
 export class StatsPageModule {}

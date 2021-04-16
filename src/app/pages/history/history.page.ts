@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { EntryModel } from '../../models/entry.model';
 import { loadAllEntries } from '../../store/actions/entries.actions';
 import { AppState } from '../../store/app.state';

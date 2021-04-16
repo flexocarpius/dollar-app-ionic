@@ -10,32 +10,41 @@ import { AppState } from '../../store/app.state';
   styleUrls: ['./stats.page.scss'],
 })
 export class StatsPage implements OnInit {
-  public buyData: ChartDataSets[];
-  public sellData: any;
+  public buyData: any[];
+  public sellData: any[];
   public lineChartLabels: any;
   public lineChartOptions: (any & { annotation: any }) = {
     responsive: true,
+    maintainAspectRatio: false,
     scales: {
       xAxes: [
         { display: false }
       ]
     }
   };
-  public lineChartColors: any = [
+  public buyLineChartColors: any = [
     {
-      borderColor: 'black',
+      borderColor: 'rgb(75, 192, 192)',
+      backgroundColor: 'rgba(255,0,0,0.3)',
+    },
+  ];
+  public sellLineChartColors: any = [
+    {
+      borderColor: 'rgb(75, 192, 192)',
       backgroundColor: 'rgba(255,0,0,0.3)',
     },
   ];
   public lineChartLegend = false;
   public lineChartType = 'line';
   public lineChartPlugins = [];
+  loading: boolean;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.store.dispatch(loadAllEntries());
     this.store.select(state => state.entries).subscribe(({ loading, entries }) => {
+      this.loading = loading;
       if (!loading && entries) {
         const reversed = entries.slice().reverse();
         this.buyData = [
@@ -43,6 +52,10 @@ export class StatsPage implements OnInit {
             data: reversed.map(d => d.buy_price),
             label: 'Buy price',
             pointRadius: 0,
+            borderColor: 'rgb(75, 192, 192)',
+            fill: false,
+            borderWidth: 5,
+            tension: 0.1,
           }
         ];
         this.sellData = [
@@ -50,7 +63,9 @@ export class StatsPage implements OnInit {
             data: reversed.map(d => d.sell_price),
             label: 'Sell price',
             pointRadius: 0,
-            borderColor: 'green'
+            borderColor: 'rgb(75, 192, 192)',
+            fill: false,
+            borderWidth: 5,
           }
         ];
         this.lineChartLabels = reversed.map(d => d.date)

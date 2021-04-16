@@ -5,8 +5,15 @@
 </ion-header>
 
 <ion-content>
-  <div class="entry" *ngFor="let entry of entries$ | async">
-    <h4>Buy: {{ entry.buy_price }}, Sell: {{ entry.sell_price }}</h4>
-    <h5>{{ entry.date | date: 'yyyy/MM/dd' }}</h5>
-  </div>
+  <ng-container *ngIf="entries$ | async as entries; else loading">
+    <div class="entry" *ngFor="let entry of entries">
+      <h4>Buy: {{ entry.buy_price }}, Sell: {{ entry.sell_price }}</h4>
+      <h5>{{ entry.date | date: 'yyyy/MM/dd' }}</h5>
+    </div>
+  </ng-container>
+  <ng-container #loading>
+    <div class="placeholder-container">
+      <app-loading></app-loading>
+    </div>
+  </ng-container>
 </ion-content>
