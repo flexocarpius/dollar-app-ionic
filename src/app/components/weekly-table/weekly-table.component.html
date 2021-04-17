@@ -1,11 +1,34 @@
 <div class="table-container">
   <h4>Weekly comparison</h4>
-  <div *ngIf="loading" class="placeholder-container">
+  <div *ngIf="loading === true" class="placeholder-container">
     <app-loading></app-loading>
   </div>
-  <ng-container *ngIf="!loading">
-    <ng-container *ngFor="let row of weeklyData">
-      <app-entry-row [entry]="row"></app-entry-row>
-    </ng-container>
+  <ng-container *ngIf="loading === false">
+    <table class="table">
+      <thead>
+        <th>Date</th>
+        <th>Buy</th>
+        <th>Sell</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entry of weeklyData">
+          <td>{{ entry.entry.date | date: 'yyyy/MM/dd' }}</td>
+          <td>
+            <span [ngClass]="{'positive': entry.buy_percent >= 0, 'negative': entry.buy_percent < 0}">
+              <ion-icon *ngIf="entry.buy_percent >= 0" slot="start" src="assets/svg/arrow-upward-outline.svg"></ion-icon>
+              <ion-icon *ngIf="entry.buy_percent < 0" slot="start" src="assets/svg/arrow-downward-outline.svg"></ion-icon>
+              {{ entry.sell_percent | number: '1.2-2' }}%
+            </span>
+          </td>
+          <td>
+            <span [ngClass]="{'positive': entry.sell_percent >= 0, 'negative': entry.sell_percent < 0}">
+              <ion-icon *ngIf="entry.sell_percent >= 0" slot="start" src="assets/svg/arrow-upward-outline.svg"></ion-icon>
+              <ion-icon *ngIf="entry.sell_percent < 0" slot="start" src="assets/svg/arrow-downward-outline.svg"></ion-icon>
+              {{ entry.sell_percent | number: '1.2-2' }}%
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </ng-container>
 </div>

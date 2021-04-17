@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TodaySummaryModel } from 'src/app/models/weekly-comparison.model';
+import { DailyDataModel } from '../../models/daily-data.model';
+import { TodaySummaryModel } from '../../models/weekly-comparison.model';
 
 @Component({
   selector: 'app-weekly-table',
@@ -7,11 +8,12 @@ import { TodaySummaryModel } from 'src/app/models/weekly-comparison.model';
   styleUrls: ['./weekly-table.component.scss'],
 })
 export class WeeklyTableComponent implements OnInit {
-  @Input() weeklyData: TodaySummaryModel;
+  @Input() weeklyData: DailyDataModel[];
   @Input() loading: boolean;
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
 }

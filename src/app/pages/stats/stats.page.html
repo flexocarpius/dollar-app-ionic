@@ -10,10 +10,10 @@
       <ion-title size="large">Stats</ion-title>
     </ion-toolbar>
   </ion-header>
-  <div *ngIf="loading" class="placeholder-container">
+  <div *ngIf="loading === true" class="placeholder-container">
     <app-loading></app-loading>
   </div>
-  <ng-container>
+  <div [hidden]="loading === true">
     <div class="title-container">
       <h1 class="title">Buy prices</h1>
       <div class="buttons">
@@ -42,5 +42,5 @@
         </canvas>
       </div>
     </div>
-  </ng-container>
+  </div>
 </ion-content>
