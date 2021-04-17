@@ -1,26 +1,42 @@
-<ion-header>
+<ion-header translucent="true">
   <ion-toolbar>
     <ion-title>History</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">History</ion-title>
+    </ion-toolbar>
+  </ion-header>
   <ng-container *ngIf="loading === false">
     <div class="filter">
-      <h4>Filter by date</h4>
-      <input type="text"
-        ngxDaterangepickerMd
-        [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
-        startKey="start"
-        endKey="end"
-        [(ngModel)]="selected"
-        (datesUpdated)="datesUpdated($event)"
-        name="daterange" />
+      <h4 class="title">Filter by date</h4>
+      <ion-item>
+        <ion-label>Start Date</ion-label>
+        <ion-datetime displayFormat="MM DD YYYY" placeholder="Pick a Date" (ionChange)="startDateChange($event)"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>End Date</ion-label>
+        <ion-datetime displayFormat="MM DD YYYY" placeholder="Pick a Date" (ionChange)="endDateChange($event)"></ion-datetime>
+      </ion-item>
     </div>
-    <div class="entry" *ngFor="let entry of filteredEntries">
-      <span>Buy: {{ entry.buy_price }}</span>
-      <span>Sell: {{ entry.sell_price }}</span>
-      <span>{{ entry.date | date: 'yyyy/MM/dd' }}</span>
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <th>Date</th>
+          <th>Buy</th>
+          <th>Sell</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let entry of filteredEntries">
+            <td>{{ entry.date | date: 'yyyy/MM/dd' }}</td>
+            <td>{{ entry.buy_price }}</td>
+            <td>{{ entry.sell_price }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </ng-container>
   <ng-container *ngIf="loading === true">

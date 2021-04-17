@@ -23,10 +23,12 @@ export class EntriesEffects {
                 of(loadAllEntriesSuccess({ entries })),
                 this.api.getAllData().pipe(
                     map((data: EntryModel[]) => {
-                        this.presentToastMessage('Data loaded.');
                         return loadAllEntriesSuccess({ entries: data });
                     }),
-                    catchError(() => of(loadAllEntriesFail()))
+                    catchError(() => {
+                        this.presentToastMessage('Error while loading.');
+                        return of(loadAllEntriesFail())
+                    })
                 )
             ))
         ))
@@ -40,10 +42,12 @@ export class EntriesEffects {
                 of(loadTodaySummarySuccess({ summary })),
                 this.api.getWeeklyData().pipe(
                     map((data: TodaySummaryModel) => {
-                        this.presentToastMessage('Data loaded.');
                         return loadTodaySummarySuccess({ summary: data });
                     }),
-                    catchError(() => of(loadTodaySummaryFail()))
+                    catchError(() => {
+                        this.presentToastMessage('Error while loading.');
+                        return of(loadAllEntriesFail())
+                    })
                 )
             ))
         ))

@@ -15,8 +15,9 @@ export class HistoryPage implements OnInit {
   entries$: Observable<EntryModel[]>;
   entries: EntryModel[];
   filteredEntries: EntryModel[];
-  selected: {startDate: Moment, endDate: Moment};
   loading: boolean = true;
+  startDate: Date;
+  endDate: Date;
 
   constructor(private store: Store<AppState>) {
     this.store.dispatch(loadAllEntries());
@@ -31,12 +32,31 @@ export class HistoryPage implements OnInit {
 
   }
 
-  datesUpdated(dateRange: { startDate: Moment, endDate: Moment }) {
-    this.selected = dateRange;
-    if(this.entries && this.entries.length > 0 && dateRange.startDate && dateRange.endDate) {
+  startDateChange(e) {
+    if (e.detail && e.detail.value) {
+      this.startDate = new Date(e.detail.value);
+    }
+    else {
+      this.startDate = null;
+    }
+    this.filterEntries();
+  }
+
+  endDateChange(e) {
+    if (e.detail && e.detail.value) {
+      this.endDate = new Date(e.detail.value);
+    }
+    else {
+      this.endDate = null;
+    }
+    this.filterEntries();
+  }
+
+  filterEntries() {
+    if (this.startDate && this.endDate) {
       this.filteredEntries = this.entries.filter(e => {
-        const date = new Date(e.date).valueOf() / 1000;
-        return date >= dateRange.startDate.unix() && date < dateRange.endDate.unix();
+        const date = new Date(e.date).valueOf();
+        return date >= this.startDate.valueOf() && date < this.endDate.valueOf();
       });
     }
   }
