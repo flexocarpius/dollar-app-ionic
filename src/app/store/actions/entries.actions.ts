@@ -27,3 +27,7 @@ export const loadTodaySummarySuccess = createAction(
 export const loadTodaySummaryFail = createAction(
     '[ENTRIES] Load today summary fail'
 );
+
+export const resetTodaySummary = createAction(
+    '[ENTRIES] Reset Today Summary'
+);

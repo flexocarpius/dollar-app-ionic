@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 import { EntryModel } from "src/app/models/entry.model";
 import { TodaySummaryModel } from "src/app/models/weekly-comparison.model";
-import { loadAllEntries, loadAllEntriesFail, loadAllEntriesSuccess, loadTodaySummary, loadTodaySummaryFail, loadTodaySummarySuccess } from "../actions/entries.actions";
+import { loadAllEntries, loadAllEntriesFail, loadAllEntriesSuccess, loadTodaySummary, loadTodaySummaryFail, loadTodaySummarySuccess, resetTodaySummary } from "../actions/entries.actions";
 
 export interface EntriesState {
     loading: boolean;
@@ -22,7 +22,8 @@ const _entriesReducer = createReducer(
   on(loadAllEntriesFail, (state) => ({ ...state, loading: false })),
   on(loadTodaySummary, (state) => ({ ...state, loading: true })),
   on(loadTodaySummarySuccess, (state, { summary }) => ({ ...state, loading: false, summary })),
-  on(loadTodaySummaryFail, (state) => ({ ...state, loading: false }))
+  on(loadTodaySummaryFail, (state) => ({ ...state, loading: false })),
+  on(resetTodaySummary, (state) => ({ ...state, loading: false, entries: null }))
 );
  
 export function entriesReducer(state, action) {
