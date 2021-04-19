@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DailyDataModel } from '../../models/daily-data.model';
-import { TodaySummaryModel } from '../../models/weekly-comparison.model';
 
 @Component({
   selector: 'app-weekly-table',
@@ -11,9 +11,13 @@ export class WeeklyTableComponent implements OnInit {
   @Input() weeklyData: DailyDataModel[];
   @Input() loading: boolean;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  viewAllClick() {
+    this.router.navigate(['/tabs/history']);
   }
 
 }

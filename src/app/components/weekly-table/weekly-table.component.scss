@@ -5,11 +5,17 @@
     color: #fff;
     background-color: var(--ion-color-step-100);
     border-radius: 12px;
-    padding: 24px;
+    padding: 16px;
+
+    .title-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
     
     h4 {
         margin: 0;
-        margin-bottom: 1em;
+        // margin-bottom: 1em;
     }
 
     & .row {
