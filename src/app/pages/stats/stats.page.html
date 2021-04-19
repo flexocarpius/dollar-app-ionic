@@ -18,7 +18,7 @@
       <h1 class="title">Buy prices</h1>
     </div>
     <div class="chart-container">
-      <div class="chart">
+      <div class="chart" [style]="buyChartStyle">
         <canvas id="buy-chart">
         </canvas>
       </div>
@@ -27,7 +27,7 @@
       <h1 class="title">Sell prices</h1>
     </div>
     <div class="chart-container">
-      <div class="chart">
+      <div class="chart" [style]="sellChartStyle">
         <canvas id="sell-chart">
         </canvas>
       </div>
