@@ -17,7 +17,7 @@
             <span [ngClass]="{'positive': entry.buy_percent >= 0, 'negative': entry.buy_percent < 0}">
               <ion-icon *ngIf="entry.buy_percent >= 0" slot="start" src="assets/svg/arrow-upward-outline.svg"></ion-icon>
               <ion-icon *ngIf="entry.buy_percent < 0" slot="start" src="assets/svg/arrow-downward-outline.svg"></ion-icon>
-              {{ entry.sell_percent | number: '1.2-2' }}%
+              {{ entry.buy_percent | number: '1.2-2' }}%
             </span>
           </td>
           <td>

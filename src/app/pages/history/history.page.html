@@ -15,11 +15,11 @@
       <h4 class="title">Filter by date</h4>
       <ion-item>
         <ion-label>Start Date</ion-label>
-        <ion-datetime displayFormat="MM DD YYYY" placeholder="Pick a Date" (ionChange)="startDateChange($event)"></ion-datetime>
+        <ion-datetime displayFormat="DD MMM YYYY" placeholder="Pick a Date" (ionChange)="startDateChange($event)" [value]="defaultStartDate"></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-label>End Date</ion-label>
-        <ion-datetime displayFormat="MM DD YYYY" placeholder="Pick a Date" (ionChange)="endDateChange($event)"></ion-datetime>
+        <ion-datetime displayFormat="DD MMM YYYY" placeholder="Pick a Date" (ionChange)="endDateChange($event)" [value]="defaultEndDate"></ion-datetime>
       </ion-item>
     </div>
     <div class="table-container">

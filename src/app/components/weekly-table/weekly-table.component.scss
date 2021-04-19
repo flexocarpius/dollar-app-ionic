@@ -58,6 +58,10 @@
                     color: #2dce89;
                 }
             }
+
+            &:last-child {
+                border-bottom: none;
+            }
         }
     }
 }

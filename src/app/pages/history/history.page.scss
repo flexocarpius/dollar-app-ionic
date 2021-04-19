@@ -35,14 +35,23 @@
         padding: 16px;
     }
 
-    tbody tr {
-        color: #fff;
-        border-bottom: 1px solid #525252;
-        
-        td {
-            padding: 16px 16px;
-            text-align: left;
-            font-size: 16px;
+    tbody {
+        padding: 0px 16px;
+
+        tr {
+            color: #fff;
+            border-bottom: 1px solid #525252;
+            margin: 0px 16px;
+            
+            td {
+                padding: 16px 16px;
+                text-align: left;
+                font-size: 16px;
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
         }
     }
 }

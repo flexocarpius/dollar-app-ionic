@@ -13,7 +13,7 @@ import { EntriesEffects } from './store/effects/entries.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { entriesReducer } from './store/reducers/entries.reducers';
-import 'chartjs-plugin-zoom';
+// import 'chartjs-plugin-zoom';
 
 @NgModule({
   declarations: [AppComponent],

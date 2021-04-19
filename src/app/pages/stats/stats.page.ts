@@ -30,42 +30,43 @@ export class StatsPage implements OnInit {
           ticks: {
             autoSkip: false,
             maxRotation: 90,
-            minRotation: 90
-        }
+            minRotation: 90,
+            reverse: true,
+          },
         }
       ]
     },
-    plugins: {
-      zoom: {
-        pan: {
-          enabled: true,
-          mode: 'x',
-          overScaleMode: 'x',
-          threshold: 10,
-          rangeMin: {
-            x: null,
-          },
-          rangeMax: {
-            x: null,
-          },
-        },
-        zoom: {
-          enabled: true,
-          drag: true,
-          mode: 'x',
-          overScaleMode: 'x',
-          speed: 0.1,
-          threshold: 2,
-          sensitivity: 3,
-          rangeMin: {
-            x: null,
-          },
-          rangeMax: {
-            x: null,
-          },
-        }
-      }
-    },
+    // plugins: {
+    //   zoom: {
+    //     pan: {
+    //       enabled: true,
+    //       mode: 'x',
+    //       overScaleMode: 'x',
+    //       threshold: 10,
+    //       rangeMin: {
+    //         x: null,
+    //       },
+    //       rangeMax: {
+    //         x: null,
+    //       },
+    //     },
+    //     zoom: {
+    //       enabled: true,
+    //       drag: true,
+    //       mode: 'x',
+    //       overScaleMode: 'x',
+    //       speed: 0.1,
+    //       threshold: 2,
+    //       sensitivity: 3,
+    //       rangeMin: {
+    //         x: null,
+    //       },
+    //       rangeMax: {
+    //         x: null,
+    //       },
+    //     }
+    //   }
+    // },
     transitions: {
       zoom: {
         animation: {
@@ -84,10 +85,10 @@ export class StatsPage implements OnInit {
     this.store.select(state => state.entries).subscribe(({ loading, entries }) => {
       this.loading = loading;
       if (!loading && entries) {
-        const reversed = entries.slice().reverse();
+        const orderedEntries = entries;
         const buyData = [
           {
-            data: reversed.map(d => d.buy_price),
+            data: orderedEntries.map(d => d.buy_price),
             label: 'Buy price',
             pointRadius: 0,
             fill: false,
@@ -97,7 +98,7 @@ export class StatsPage implements OnInit {
         ];
         const sellData = [
           {
-            data: reversed.map(d => d.sell_price),
+            data: orderedEntries.map(d => d.sell_price),
             label: 'Sell price',
             pointRadius: 0,
             fill: false,
@@ -105,7 +106,7 @@ export class StatsPage implements OnInit {
             backgroundColor: 'rgba(255,0,0,0.3)',
           }
         ];
-        const labels = reversed.map(d => new Date(d.date));
+        const labels = orderedEntries.map(d => new Date(d.date));
         this.initBuyChart(labels, buyData);
         this.initSellChart(labels, sellData);
       }
