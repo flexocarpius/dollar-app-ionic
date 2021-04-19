@@ -32,8 +32,8 @@
         <tbody>
           <tr *ngFor="let entry of filteredEntries">
             <td>{{ entry.date | date: 'yyyy/MM/dd' }}</td>
-            <td>{{ entry.buy_price }}</td>
-            <td>{{ entry.sell_price }}</td>
+            <td>{{ entry.buy_price | number: '1.4-4' }}</td>
+            <td>{{ entry.sell_price | number: '1.4-4' }}</td>
           </tr>
         </tbody>
       </table>
