@@ -1,5 +1,10 @@
 <ion-header translucent="true">
   <ion-toolbar>
+    <ion-buttons collapse="true" slot="primary">
+      <ion-button color="secondary" (click)="onRefresh()">
+        <ion-icon name="refresh-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Summary</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -7,8 +12,8 @@
 <ion-content fullscreen="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-buttons slot="primary">
-        <ion-button color="secondary">
+      <ion-buttons collapse="true" slot="primary">
+        <ion-button color="secondary" (click)="onRefresh()">
           <ion-icon name="refresh-outline"></ion-icon>
         </ion-button>
       </ion-buttons>

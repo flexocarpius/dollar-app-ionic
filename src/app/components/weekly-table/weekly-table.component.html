@@ -1,7 +1,7 @@
 <div class="table-container">
   <div class="title-container">
     <h4>Weekly comparison</h4>
-    <ion-button fill="clear" (click)="viewAllClick()">View all</ion-button>
+    <ion-button *ngIf="detailsButton" fill="clear" (click)="detailsClick()">Details</ion-button>
   </div>
   <div *ngIf="loading === true" class="placeholder-container">
     <app-loading></app-loading>

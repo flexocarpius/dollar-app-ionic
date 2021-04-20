@@ -7,8 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { HistoryPageRoutingModule } from './history-routing.module';
 
 import { HistoryPage } from './history.page';
-import { LoadingComponent } from '../../components/loading/loading.component';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import { LoadingComponentModule } from '../../components/loading/loading.module';
 
 @NgModule({
   imports: [
@@ -16,8 +16,9 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
     FormsModule,
     IonicModule,
     HistoryPageRoutingModule,
-    NgxDaterangepickerMd.forRoot()
+    NgxDaterangepickerMd.forRoot(),
+    LoadingComponentModule
   ],
-  declarations: [HistoryPage, LoadingComponent]
+  declarations: [HistoryPage]
 })
 export class HistoryPageModule {}

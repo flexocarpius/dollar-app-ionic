@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ComparisonDataModel } from '../../models/comparison-data.model';
 import { DailyDataModel } from '../../models/daily-data.model';
-import { loadTodaySummary } from '../../store/actions/entries.actions';
+import { loadTodaySummary, resetTodaySummary } from '../../store/actions/entries.actions';
 import { AppState } from '../../store/app.state';
 
 @Component({
@@ -31,4 +31,8 @@ export class HomePage implements OnInit {
     });
   }
 
+  onRefresh() {
+    this.store.dispatch(resetTodaySummary());
+    this.store.dispatch(loadTodaySummary());
+  }
 }

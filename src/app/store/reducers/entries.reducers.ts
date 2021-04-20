@@ -23,7 +23,7 @@ const _entriesReducer = createReducer(
   on(loadTodaySummary, (state) => ({ ...state, loading: true })),
   on(loadTodaySummarySuccess, (state, { summary }) => ({ ...state, loading: false, summary })),
   on(loadTodaySummaryFail, (state) => ({ ...state, loading: false })),
-  on(resetTodaySummary, (state) => ({ ...state, loading: false, entries: null }))
+  on(resetTodaySummary, (state) => ({ ...state, loading: false, summary: null }))
 );
  
 export function entriesReducer(state, action) {

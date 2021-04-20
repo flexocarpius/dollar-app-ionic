@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Weekly</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Weekly</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="chart-container">
+    <div class="chart">
+      <canvas id="line-chart">
+      </canvas>
+    </div>
+  </div>
+  <div class="table-container">
+    <app-weekly-table [loading]="loading" [weeklyData]="weeklyData" [detailsButton]="false"></app-weekly-table>
+  </div>
+</ion-content>

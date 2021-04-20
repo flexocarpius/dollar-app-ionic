@@ -1,19 +1,19 @@
 <div class="comparison-container">
-  <ng-container *ngIf="loading">
+  <div [hidden]="loading === false">
     <app-loading [height]="198"></app-loading>
-  </ng-container>
-  <ng-container *ngIf="!loading">
+  </div>
+  <div [hidden]="loading">
     <div class="details-container">
-      <h3 class="title">{{ comparisonData.label }}</h3>
-      <h1 class="price">{{ comparisonData.price | number: '1.4-4' }}</h1>
+      <h3 class="title" [class.show]="loading === false">{{ comparisonData?.label }}</h3>
+      <h1 class="price" [class.show]="loading === false">{{ comparisonData?.price | number: '1.4-4' }}</h1>
     </div>
-    <div class="percent-container">
-      <ng-container *ngIf="comparisonData.percent >= 0">
-        <span class="positive"><ion-icon slot="start" src="assets/svg/arrow-upward-outline.svg"></ion-icon>&nbsp;{{ comparisonData.percent | number: '1.3-3' }}%</span>&nbsp;Compared to yesterday
+    <div class="percent-container" [class.show]="loading === false">
+      <ng-container *ngIf="comparisonData?.percent >= 0">
+        <span class="positive"><ion-icon slot="start" src="assets/svg/arrow-upward-outline.svg"></ion-icon>&nbsp;{{ comparisonData?.percent | number: '1.3-3' }}%</span>&nbsp;Compared to yesterday
       </ng-container>
-      <ng-container *ngIf="comparisonData.percent < 0">
-        <span class="negative"><ion-icon slot="start" src="assets/svg/arrow-downward-outline.svg"></ion-icon>&nbsp;{{ comparisonData.percent | number: '1.3-3' }}%</span>&nbsp;Compared to yesterday
+      <ng-container *ngIf="comparisonData?.percent < 0">
+        <span class="negative"><ion-icon slot="start" src="assets/svg/arrow-downward-outline.svg"></ion-icon>&nbsp;{{ comparisonData?.percent | number: '1.3-3' }}%</span>&nbsp;Compared to yesterday
       </ng-container>
     </div>
-  </ng-container>
+  </div>
 </div>

@@ -4,21 +4,20 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { StatsPageRoutingModule } from './stats-routing.module';
-
-import { StatsPage } from './stats.page';
+import { WeeklyPage } from './weekly.page';
 import { ChartsModule } from 'ng2-charts';
-import { LoadingComponentModule } from '../../components/loading/loading.module';
+import { WeeklyPageRoutingModule } from './weekly-routing.module';
+import { WeeklyTableComponentModule } from '../../components/weekly-table/weekly-table.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    StatsPageRoutingModule,
+    WeeklyPageRoutingModule,
     ChartsModule,
-    LoadingComponentModule,
+    WeeklyTableComponentModule
   ],
-  declarations: [StatsPage]
+  declarations: [WeeklyPage]
 })
-export class StatsPageModule {}
+export class WeeklyPageModule {}

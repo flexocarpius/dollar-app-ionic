@@ -38,6 +38,10 @@ export class StatsPage implements OnInit {
         }
       ]
     },
+    tooltips: {
+      mode: 'nearest',
+      intersect: false,
+    },
     // plugins: {
     //   zoom: {
     //     pan: {

@@ -8,17 +8,19 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
 import { ComparisonCardComponent } from '../../components/comparison-card/comparison-card.component';
-import { LoadingComponent } from 'src/app/components/loading/loading.component';
-import { WeeklyTableComponent } from 'src/app/components/weekly-table/weekly-table.component';
 import { EntryRowComponent } from 'src/app/components/entry-row/entry-row.component';
+import { LoadingComponentModule } from 'src/app/components/loading/loading.module';
+import { WeeklyTableComponentModule } from 'src/app/components/weekly-table/weekly-table.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    LoadingComponentModule,
+    WeeklyTableComponentModule,
   ],
-  declarations: [HomePage, ComparisonCardComponent, LoadingComponent, WeeklyTableComponent, EntryRowComponent]
+  declarations: [HomePage, ComparisonCardComponent, EntryRowComponent],
 })
 export class HomePageModule {}

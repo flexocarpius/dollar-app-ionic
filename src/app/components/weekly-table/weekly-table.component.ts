@@ -10,14 +10,15 @@ import { DailyDataModel } from '../../models/daily-data.model';
 export class WeeklyTableComponent implements OnInit {
   @Input() weeklyData: DailyDataModel[];
   @Input() loading: boolean;
+  @Input() detailsButton: boolean = true;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  viewAllClick() {
-    this.router.navigate(['/tabs/history']);
+  detailsClick() {
+    this.router.navigate(['/weekly']);
   }
 
 }
